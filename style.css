@@ -13,20 +13,38 @@ header , footer {
     text-align: center;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     /* background-color: #1DA1F2; */
-    background: #ee9ca7;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #ffdde1, #ee9ca7);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #ffdde1, #ee9ca7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     color: white;
 }
 
 header {
     font-size: 32px;
     font-weight: bold;
+    background: #ee9ca7;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #ffdde1, #ee9ca7);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #ffdde1, #ee9ca7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .scoreboard {
     font-family: led-board;
     color: white;
+    display: flex;
+    gap: 1rem;
+}
+
+.player-score, .cpu-score {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.player-score h2 {
+    color: dodgerblue;
+    margin-bottom: 0;
+}
+
+.cpu-score h2 {
+    color: red;
+    margin-bottom: 0;
 }
 
 .fa-hand-rock {

@@ -2,9 +2,13 @@ console.log('The script is working');
 var choices = ['rock', 'paper', 'scissors'];
 var playerScore = 0;
 var computerScore = 0;
+var round = 1;
 var rock = document.querySelector('#rock');
 var paper = document.querySelector('#paper');
 var scissors = document.querySelector('#scissors');
+var p1Score = document.querySelector('#p1');
+var cpuScore = document.querySelector('#cpu');
+var roundCount = document.querySelector('#round');
 
 function handleClick(value) {
     let computerSelection = computerPlay();
@@ -25,67 +29,51 @@ function capitalizeFirstLetter(string) {
 }
 
 function playRound(playerSelection, computerSelection) {
+    round++;
+    roundCount.textContent = round;
     if (playerSelection === 'rock') {
         if (computerSelection === 'scissors') {
             playerScore++;
+            p1Score.textContent = playerScore;
             console.log(`You Win! ${capitalizeFirstLetter(playerSelection)} beats ${computerSelection}`);
-            return `You Win! ${capitalizeFirstLetter(playerSelection)} beats ${computerSelection}`;
         }
         else if (computerSelection === 'paper') {
             computerScore++;
+            cpuScore.textContent = computerScore;
             console.log(`You Lose! ${capitalizeFirstLetter(computerSelection)} beats ${playerSelection}`);
-            return `You Lose! ${capitalizeFirstLetter(computerSelection)} beats ${playerSelection}`;
         }
         else {
             console.log('Draw!');
-            return 'Draw!';
         }
     }
     else if (playerSelection === 'scissors') {
         if (computerSelection === 'paper') {
             playerScore++;
+            p1Score.textContent = playerScore;
             console.log(`You Win! ${capitalizeFirstLetter(playerSelection)} beats ${computerSelection}`);
-            return `You Win! ${capitalizeFirstLetter(playerSelection)} beats ${computerSelection}`;
         }
         else if (computerSelection === 'rock') {
             computerScore++;
+            cpuScore.textContent = computerScore;
             console.log(`You Lose! ${capitalizeFirstLetter(computerSelection)} beats ${playerSelection}`);
-            return `You Lose! ${capitalizeFirstLetter(computerSelection)} beats ${playerSelection}`;
         }
         else {
             console.log('Draw!');
-            return 'Draw!';
         }
     }
     else if (playerSelection === 'paper') {
         if (computerSelection === 'rock') {
             playerScore++;
+            p1Score.textContent = playerScore;
             console.log(`You Win! ${capitalizeFirstLetter(playerSelection)} beats ${computerSelection}`);
-            return `You Win! ${capitalizeFirstLetter(playerSelection)} beats ${computerSelection}`;
         }
         else if (computerSelection === 'scissors') {
             computerScore++;
+            cpuScore.textContent = computerScore;
             console.log(`You Lose! ${capitalizeFirstLetter(computerSelection)} beats ${playerSelection}`);
-            return `You Lose! ${capitalizeFirstLetter(computerSelection)} beats ${playerSelection}`;
         }
         else {
             console.log('Draw!');
-            return 'Draw!';
         }
     }
 }
-
-function game() {
-    // for (let i = 1; i <= 5; i++) {
-    //     console.log(`-- Round ${i} --`);
-    //     let playerSelection = prompt('Choose Rock, Paper or Scissors!');
-    //     const computerSelection = computerPlay();
-    //     console.log('player selection:', playerSelection);
-    //      console.log('computer selection:', computerSelection);
-    //     //playerSelection = playerSelection.toLowerCase();
-    //     console.log(playRound(playerSelection.toLowerCase(), computerSelection));
-    //     console.log(`player ${playerScore} - ${computerScore} computer`);
-    // }
-}
-
-game();
