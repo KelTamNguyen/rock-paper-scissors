@@ -1,12 +1,21 @@
+@font-face {
+    font-family: led-board;
+    src: url(font/enhanced-led-board-7.regular.ttf) format("truetype");
+}
+
 html, body {
     margin: 0;
     height: 100%;
+    background-color: #141D26;
 }
 
 header , footer {
     text-align: center;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    background-color: #1DA1F2;
+    /* background-color: #1DA1F2; */
+    background: #ee9ca7;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #ffdde1, #ee9ca7);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #ffdde1, #ee9ca7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     color: white;
 }
 
@@ -15,11 +24,24 @@ header {
     font-weight: bold;
 }
 
+.scoreboard {
+    font-family: led-board;
+    color: white;
+}
+
+.fa-hand-rock {
+    color: dodgerblue;
+}
+
+.fa-hand-paper {
+    color: tomato;
+}
+
+.fa-hand-scissors {
+    color: mediumslateblue;
+}
+
 footer {
     font-size: 18px;
     padding: 15px 0;
-}
-
-i:hover {
-    cursor:grab;
 }
