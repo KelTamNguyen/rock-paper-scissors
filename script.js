@@ -8,7 +8,8 @@ var paper = document.querySelector('#paper');
 var scissors = document.querySelector('#scissors');
 var p1Score = document.querySelector('#p1');
 var cpuScore = document.querySelector('#cpu');
-var roundCount = document.querySelector('#round');
+var roundNumber = document.querySelector('#round');
+var finalMessage = '';
 
 function handleClick(value) {
     let computerSelection = computerPlay();
@@ -28,52 +29,73 @@ function capitalizeFirstLetter(string) {
     return string[0].toUpperCase() +  string.slice(1).toLowerCase();
 }
 
+function resetGame() {
+    playerScore = 0;
+    computerScore = 0;
+    round = 1
+    p1Score.textContent = playerScore;
+    cpuScore.textContent = computerScore;
+    roundNumber.textContent = round;
+}
+
 function playRound(playerSelection, computerSelection) {
-    round++;
-    roundCount.textContent = round;
-    if (playerSelection === 'rock') {
-        if (computerSelection === 'scissors') {
-            playerScore++;
-            p1Score.textContent = playerScore;
-            console.log(`You Win! ${capitalizeFirstLetter(playerSelection)} beats ${computerSelection}`);
+    if (playerScore !== 5 && computerScore !== 5) {
+        round++;
+        roundNumber.textContent = round;
+        if (playerSelection === 'rock') {
+            if (computerSelection === 'scissors') {
+                playerScore++;
+                p1Score.textContent = playerScore;
+                console.log(`You Win! ${capitalizeFirstLetter(playerSelection)} beats ${computerSelection}`);
+            }
+            else if (computerSelection === 'paper') {
+                computerScore++;
+                cpuScore.textContent = computerScore;
+                console.log(`You Lose! ${capitalizeFirstLetter(computerSelection)} beats ${playerSelection}`);
+            }
+            else {
+                console.log('Draw!');
+            }
         }
-        else if (computerSelection === 'paper') {
-            computerScore++;
-            cpuScore.textContent = computerScore;
-            console.log(`You Lose! ${capitalizeFirstLetter(computerSelection)} beats ${playerSelection}`);
+        else if (playerSelection === 'scissors') {
+            if (computerSelection === 'paper') {
+                playerScore++;
+                p1Score.textContent = playerScore;
+                console.log(`You Win! ${capitalizeFirstLetter(playerSelection)} beats ${computerSelection}`);
+            }
+            else if (computerSelection === 'rock') {
+                computerScore++;
+                cpuScore.textContent = computerScore;
+                console.log(`You Lose! ${capitalizeFirstLetter(computerSelection)} beats ${playerSelection}`);
+            }
+            else {
+                console.log('Draw!');
+            }
         }
-        else {
-            console.log('Draw!');
+        else if (playerSelection === 'paper') {
+            if (computerSelection === 'rock') {
+                playerScore++;
+                p1Score.textContent = playerScore;
+                console.log(`You Win! ${capitalizeFirstLetter(playerSelection)} beats ${computerSelection}`);
+            }
+            else if (computerSelection === 'scissors') {
+                computerScore++;
+                cpuScore.textContent = computerScore;
+                console.log(`You Lose! ${capitalizeFirstLetter(computerSelection)} beats ${playerSelection}`);
+            }
+            else {
+                console.log('Draw!');
+            }
         }
     }
-    else if (playerSelection === 'scissors') {
-        if (computerSelection === 'paper') {
-            playerScore++;
-            p1Score.textContent = playerScore;
-            console.log(`You Win! ${capitalizeFirstLetter(playerSelection)} beats ${computerSelection}`);
-        }
-        else if (computerSelection === 'rock') {
-            computerScore++;
-            cpuScore.textContent = computerScore;
-            console.log(`You Lose! ${capitalizeFirstLetter(computerSelection)} beats ${playerSelection}`);
+    else {
+        if (computerScore === 5) {
+            finalMessage = 'You Lose';
         }
         else {
-            console.log('Draw!');
+            finalMessage = 'You Win';
         }
-    }
-    else if (playerSelection === 'paper') {
-        if (computerSelection === 'rock') {
-            playerScore++;
-            p1Score.textContent = playerScore;
-            console.log(`You Win! ${capitalizeFirstLetter(playerSelection)} beats ${computerSelection}`);
-        }
-        else if (computerSelection === 'scissors') {
-            computerScore++;
-            cpuScore.textContent = computerScore;
-            console.log(`You Lose! ${capitalizeFirstLetter(computerSelection)} beats ${playerSelection}`);
-        }
-        else {
-            console.log('Draw!');
-        }
+        console.log(finalMessage);
+        resetGame();
     }
 }
