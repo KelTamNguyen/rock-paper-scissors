@@ -10,31 +10,39 @@
     src: url(font/enhanced-led-board-7.regular.ttf) format("truetype");
 }
 
-html, body {
+body {
     margin: 0;
+    padding: 0;
     height: 100%;
-    background-color: #141D26;
+    background-color: var(--clr-bg);
 }
+
 
 header , footer {
     text-align: center;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Press Start 2P', cursive;
     color: white;
 }
 
 header {
     font-size: 32px;
-    font-weight: bold;
-    background: #ee9ca7;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #ffdde1, #ee9ca7);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #ffdde1, #ee9ca7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: var(--clr-neon-blue);
+}
+
+header h1 {
+    margin: 0;
+}
+
+main {
+    text-align: center;
 }
 
 .scoreboard {
     font-family: led-board;
     color: white;
     display: flex;
-    gap: 1rem;
+    gap: 7rem;
+    justify-content: center;
 }
 
 .player-score, .cpu-score {
@@ -53,6 +61,14 @@ header {
     margin-bottom: 0;
 }
 
+.player-score h2, .cpu-score h2 {
+    font-size: 40px;
+}
+
+.player-score h1, .cpu-score h1 {
+    font-size: 70px;
+}
+
 .fa-hand-rock {
     color: var(--clr-neon-blue);
 }
@@ -64,6 +80,13 @@ header {
 .fa-hand-scissors {
     color: var(--clr-neon-purple);
 }
+
+.btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+}
+
 #rock {
     cursor: pointer;
     display: inline-block;
