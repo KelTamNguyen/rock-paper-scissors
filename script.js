@@ -42,30 +42,26 @@ function playRound(playerSelection, computerSelection) {
     if (playerScore !== 5 && computerScore !== 5) {
         round++;
         roundNumber.textContent = round;
-        if (playerSelection === 'rock' && computerSelection === 'scissors' || playerSelection === 'scissors' && computerSelection === 'paper' || 
-            playerSelection === 'paper' && computerSelection === 'rock') {
-                playerScore++;
-                p1Score.textContent = playerScore;
-                console.log(`You Win! ${capitalizeFirstLetter(playerSelection)} beats ${computerSelection}`);
+        if (playerSelection === 'rock' && computerSelection === 'scissors' || playerSelection === 'scissors' && computerSelection === 'paper' || playerSelection === 'paper' && computerSelection === 'rock') {
+            playerScore++;
+            p1Score.textContent = playerScore;
+            console.log(`You Win! ${capitalizeFirstLetter(playerSelection)} beats ${computerSelection}`);
+            if (playerScore === 5) {
+                console.log('Congratulations! You Won!');
+                resetGame();
+            }
         } 
-        else if (playerSelection === 'rock' && computerSelection === 'paper' || playerSelection === 'paper' && computerSelection === 'scissors' ||
-                playerSelection === 'scissors' && computerSelection === 'rock') {
-                    computerScore++;
-                    cpuScore.textContent = computerScore;
-                    console.log(`You Lose! ${capitalizeFirstLetter(computerSelection)} beats ${playerSelection}`);
+        else if (playerSelection === 'rock' && computerSelection === 'paper' || playerSelection === 'paper' && computerSelection === 'scissors' || playerSelection === 'scissors' && computerSelection === 'rock') {
+            computerScore++;
+            cpuScore.textContent = computerScore;
+            console.log(`You Lose! ${capitalizeFirstLetter(computerSelection)} beats ${playerSelection}`);
+            if (computerScore === 5) {
+                console.log('Game Over');
+                resetGame();
+            }
         }
         else if (playerSelection === computerSelection) {
             console.log('Draw!');
         }
-    }
-    else {
-        if (computerScore === 5) {
-            finalMessage = 'You Lose';
-        }
-        else {
-            finalMessage = 'You Win';
-        }
-        console.log(finalMessage);
-        resetGame();
     }
 }
