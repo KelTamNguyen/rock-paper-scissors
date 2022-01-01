@@ -3,6 +3,7 @@
     --clr-neon-pink: hsl(317 100% 54%); 
     --clr-neon-purple: #7122fa;
     --clr-bg: #141D26;
+    --game-font: 'Press Start 2P', cursive;
 }
 
 @font-face {
@@ -17,24 +18,61 @@ body {
     background-color: var(--clr-bg);
 }
 
-
-header , footer {
-    text-align: center;
-    font-family: 'Press Start 2P', cursive;
-    color: white;
-}
-
 header {
     font-size: 32px;
-    background: var(--clr-neon-blue);
+    color: gold;
+    text-align: center;
+    font-family: var(--game-font);
 }
 
 header h1 {
     margin: 0;
 }
 
+#scroll-text {
+    /* animation properties */
+    -moz-transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+    
+    -moz-animation: my-animation 15s linear infinite;
+    -webkit-animation: my-animation 15s linear infinite;
+    animation: my-animation 15s linear infinite;
+}
+
+/* for Firefox */
+@-moz-keyframes my-animation {
+    from { -moz-transform: translateX(100%); }
+    to { -moz-transform: translateX(-100%); }
+}
+
+/* for Chrome */
+@-webkit-keyframes my-animation {
+    from { -webkit-transform: translateX(100%); }
+    to { -webkit-transform: translateX(-100%); }
+}
+
+@keyframes my-animation {
+    from {
+        -moz-transform: translateX(100%);
+        -webkit-transform: translateX(100%);
+        transform: translateX(100%);
+    }
+    to {
+        -moz-transform: translateX(-100%);
+        -webkit-transform: translateX(-100%);
+        transform: translateX(-100%);
+    }
+}
+
 main {
     text-align: center;
+}
+
+.game-top {
+    font-family: var(--game-font);
+    color: white;
+    margin-top: 40px;
 }
 
 .scoreboard {
@@ -67,6 +105,12 @@ main {
 
 .player-score h1, .cpu-score h1 {
     font-size: 70px;
+    margin-bottom: 10px;
+}
+
+#result {
+    font-family: var(--game-font);
+    color: white;
 }
 
 .fa-hand-rock {
@@ -101,7 +145,6 @@ main {
 
 #rock:hover, #rock:focus {
     background: var(--clr-neon-blue);
-    color: var(--clr-bg);
 }
 
 #rock:hover::after {
@@ -109,7 +152,6 @@ main {
 }
 
 #rock:hover i, #rock:focus i {
-    /* color: var(--clr-bg); */
     color: rgba(255, 255, 255, 0.8);
     text-shadow: none;
 }
@@ -156,7 +198,6 @@ main {
 
 #paper:hover, #paper:focus {
     background: var(--clr-neon-pink);
-    color: var(--clr-bg);
 }
 
 #paper:hover::after {
@@ -164,7 +205,6 @@ main {
 }
 
 #paper:hover i, #paper:focus i {
-    /* color: var(--clr-bg); */
     color: rgba(255, 255, 255, 0.8);
     text-shadow: none;
 }
@@ -211,7 +251,6 @@ main {
 
 #scissors:hover, #scissors:focus {
     background: var(--clr-neon-purple);
-    color: var(--clr-bg);
 }
 
 #scissors:hover::after {
@@ -219,7 +258,6 @@ main {
 }
 
 #scissors:hover i, #scissors:focus i {
-    /* color: var(--clr-bg); */
     color: rgba(255, 255, 255, 0.8);
     text-shadow: none;
 }
@@ -255,4 +293,75 @@ main {
 footer {
     font-size: 18px;
     padding: 15px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-family: var(--game-font);
+    color: white;
+}
+
+.fa-github {
+    color: white;
+}
+
+.modal-bg {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s; 
+}
+
+.bg-active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal {
+    position: relative;
+    background-color: white;
+    width: 20%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 20px;
+    background: rgba(32, 32, 32, 0.9);
+}
+
+.modal h2 {
+    font-family: var(--game-font);
+    color: white;
+}
+
+.play-again {
+    font-size: 16px;
+    border-radius: 8px;
+    font-family: var(--game-font);
+    color: var(--clr-neon-pink);
+    background: rgba(32, 32, 32, 0.9);
+    border: var(--clr-neon-pink) 0.125em solid;
+    padding: 8px 4px;
+    cursor: pointer;
+}
+
+.play-again:hover {
+    background-color: var(--clr-neon-pink);
+    color: white;
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
 }
