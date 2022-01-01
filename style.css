@@ -23,6 +23,7 @@ header {
     color: gold;
     text-align: center;
     font-family: var(--game-font);
+    overflow: hidden;
 }
 
 header h1 {
