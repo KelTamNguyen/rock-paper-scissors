@@ -20,10 +20,12 @@ body {
 
 header {
     font-size: 32px;
-    color: gold;
     text-align: center;
     font-family: var(--game-font);
-    /* overflow: hidden; */
+    background-image: linear-gradient(#ffc331, #ff40ea);
+    background-clip: text;
+    color: transparent;
+    overflow: hidden;
 }
 
 header h1 {
