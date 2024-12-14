@@ -1,30 +1,46 @@
 // Game Variables
 const CHOICES = ['rock', 'paper', 'scissors'];
-let humanScore = 0;
-let computerScore = 0
+let playerScore = 0;
+let computerScore = 0;
 let round = 1;
 let drawCount = 0;
 
-// DOM/UI
-let rock = document.querySelector('#rock');
-let paper = document.querySelector('#paper');
-let scissors = document.querySelector('#scissors');
-let p1Score = document.querySelector('#p1');
-let cpuScore = document.querySelector('#cpu');
-let roundNumber = document.querySelector('#round');
-let result = document.querySelector('#result');
-let modalBg = document.querySelector('.modal-bg');
-let modalMessage = document.querySelector('.modal h2');
-let playAgain = document.querySelector('.play-again')
-let modalClose = document.querySelector('.modal-close');
+// DOM References
+const btnGroup = document.querySelector('#rps-btn-group');
+const p1Score = document.querySelector('#p1');
+const cpuScore = document.querySelector('#cpu');
+const roundNumber = document.querySelector('#round');
+const result = document.querySelector('#result');
+const modalBg = document.querySelector('.modal-bg');
+const modalMessage = document.querySelector('.modal h2');
+const playAgain = document.querySelector('.play-again')
+const modalClose = document.querySelector('.modal-close');
 
-rock.addEventListener('click', () => handleClick('rock'));
-paper.addEventListener('click', () => handleClick('paper'));
-scissors.addEventListener('click', () => handleClick('scissors'));
+// Add Event Listeners
 playAgain.addEventListener('click', () => resetGame());
-modalClose.addEventListener('click', () => modalBg.classList.remove('bg-active'));
+modalClose.addEventListener('click', function() {
+    modalBg.classList.remove('bg-active');
+});
 
-function getComputerChoice() {
+// Using Event Delegation to cut down on the amount of listeners being added 
+btnGroup.addEventListener('click', (e) =>{
+    let target = e.target;
+  
+    switch(target.id) {
+        case 'rock':
+            playRound('rock');
+            break;
+        case 'paper':
+            playRound('paper');
+            break;
+        case 'scissors':
+            playRound('scissors');
+            break;
+    }
+  });
+
+// Functions
+function computerPlay() {
     return CHOICES[Math.floor(Math.random() * CHOICES.length)];
 }
 
@@ -37,41 +53,37 @@ function openModal(message) {
     modalBg.classList.add('bg-active');
 }
 
-function handleClick(value) {
-    let computerChoice = getComputerChoice();
-    playRound(value, computerChoice);
-}
-
-function playRound(humanChoice, computerChoice) {
-    if (humanScore !== 5 && computerScore !== 5) {
+function playRound(playerSelection) {
+    let computerSelection = computerPlay();
+    console.log(computerSelection, round);
+    if (playerScore !== 5 && computerScore !== 5) {
         round++;
         roundNumber.textContent = round;
-        if (humanChoice === 'rock' && computerChoice === 'scissors' || 
-            humanChoice === 'scissors' && computerChoice=== 'paper' || 
-            humanChoice === 'paper' && computerChoice === 'rock') {
-            humanScore++;
-            p1Score.textContent = humanScore;
-            result.textContent = `You Win! ${capitalizeFirstLetter(humanChoice)} beats ${computerChoice}`;
-            if (humanScore === 5) {
+        if (playerSelection === 'rock' && computerSelection === 'scissors' || 
+            playerSelection === 'scissors' && computerSelection === 'paper' || 
+            playerSelection === 'paper' && computerSelection === 'rock') {
+            playerScore++;
+            p1Score.textContent = playerScore;
+            result.textContent = `You Win! ${capitalizeFirstLetter(playerSelection)} beats ${computerSelection}`;
+            if (playerScore === 5) {
                 openModal('You Win!');
             }
         } 
-        else if (humanChoice === 'rock' && computerChoice === 'paper' || 
-                humanChoice === 'paper' && computerChoice === 'scissors' || 
-                humanChoice === 'scissors' && computerChoice === 'rock') {
+        else if (playerSelection === 'rock' && computerSelection === 'paper' || 
+            playerSelection === 'paper' && computerSelection === 'scissors' || 
+            playerSelection === 'scissors' && computerSelection === 'rock') {
             computerScore++;
             cpuScore.textContent = computerScore;
-            result.textContent = `You Lose! ${capitalizeFirstLetter(computerChoice)} beats ${humanChoice}`;
+            result.textContent = `You Lose! ${capitalizeFirstLetter(computerSelection)} beats ${playerSelection}`;
             if (computerScore === 5) {
                 openModal('Game Over');
             }
         }
-        else if (humanChoice === computerChoice) {
+        else if (playerSelection === computerSelection) {
             drawCount++;
             result.textContent = `Draw (x${drawCount})!`;
         }
     }
-    // console.log(result.textContent);
 }
 
 function resetGame() {
