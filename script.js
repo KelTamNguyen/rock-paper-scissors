@@ -2,14 +2,13 @@
 const CHOICES = ['rock', 'paper', 'scissors'];
 let playerScore = 0;
 let computerScore = 0;
-let round = 1;
 let drawCount = 0;
 
 // DOM References
 const btnGroup = document.querySelector('#rps-btn-group');
 const p1Score = document.querySelector('#p1');
 const cpuScore = document.querySelector('#cpu');
-const roundNumber = document.querySelector('#round');
+const drawCountNode = document.querySelector('#draw');
 const result = document.querySelector('#result');
 const modalBg = document.querySelector('.modal-bg');
 const modalMessage = document.querySelector('.modal h2');
@@ -25,7 +24,7 @@ modalClose.addEventListener('click', function() {
 // Using Event Delegation to cut down on the amount of listeners being added 
 btnGroup.addEventListener('click', (e) =>{
     let target = e.target;
-  
+
     switch(target.id) {
         case 'rock':
             playRound('rock');
@@ -37,7 +36,7 @@ btnGroup.addEventListener('click', (e) =>{
             playRound('scissors');
             break;
     }
-  });
+});
 
 // Functions
 function computerPlay() {
@@ -55,10 +54,7 @@ function openModal(message) {
 
 function playRound(playerSelection) {
     let computerSelection = computerPlay();
-    console.log(computerSelection, round);
     if (playerScore !== 5 && computerScore !== 5) {
-        round++;
-        roundNumber.textContent = round;
         if (playerSelection === 'rock' && computerSelection === 'scissors' || 
             playerSelection === 'scissors' && computerSelection === 'paper' || 
             playerSelection === 'paper' && computerSelection === 'rock') {
@@ -81,7 +77,8 @@ function playRound(playerSelection) {
         }
         else if (playerSelection === computerSelection) {
             drawCount++;
-            result.textContent = `Draw (x${drawCount})!`;
+            drawCountNode.textContent = drawCount;
+            result.textContent = 'Draw!';
         }
     }
 }
@@ -93,6 +90,6 @@ function resetGame() {
     drawCount = 0;
     p1Score.textContent = playerScore;
     cpuScore.textContent = computerScore;
-    roundNumber.textContent = round;
+    drawCountNode.textContent = drawCount;
     modalBg.classList.remove('bg-active');
 }

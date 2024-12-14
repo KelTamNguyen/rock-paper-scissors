@@ -14,29 +14,31 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    <header>
-        <h1 id="scroll-text">Rock Paper Scissors</h1>
-    </header>
     <main>
         <div class="game-top">
-            <p>Rules: First to 5 Wins</p>
-            <h1>Round <span id="round">1</span></h1>
+            <!-- <h1>Round <span id="round">1</span></h1> -->
+            <h1>Rock Paper Scissors</h1>
+            <p class="blink">Rules: First to 5 Wins</p>
         </div>
         <div class="scoreboard">
-            <div class="player-score">
-                <h2>P1</h2>
+            <div id="player-score" class="score">
+                <h2 class="score-label">P1</h2>
                 <h1 id="p1">0</h1>
             </div>
-            <div class="cpu-score">
-                <h2>CPU</h2>
+            <div id="draw-count" class="score">
+                <h2 class="score-label">Draw</h2>
+                <h1 id="draw">0</h1>
+            </div>
+            <div id="cpu-score" class="score">
+                <h2 class="score-label">CPU</h2>
                 <h1 id="cpu">0</h1>
             </div>
         </div>
         <h1 id="result">Pick Rock, Paper, or Scissors</h1>
         <div id="rps-btn-group" class="btn-group">
-            <a href="#" id="rock" title="rock"><i class="fas fa-hand-rock fa-6x" ></i></a>
-            <a href="#" id="paper" title="paper"><i class="fas fa-hand-paper fa-6x"></i></a>
-            <a href="#" id="scissors" title="scissors"><i class="fas fa-hand-scissors fa-6x"></i></a>
+            <div id="rock" title="rock"><i class="fas fa-hand-rock fa-6x" ></i></div>
+            <div id="paper" title="paper"><i class="fas fa-hand-paper fa-6x"></i></div>
+            <div id="scissors" title="scissors"><i class="fas fa-hand-scissors fa-6x"></i></div>
         </div>
     </main>
     <footer>
